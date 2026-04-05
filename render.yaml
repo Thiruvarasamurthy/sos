@@ -1,0 +1,11 @@
+# Render.com — free Web Service (Node stays awake with limits; good for Express + local JSON).
+# Dashboard: New → Blueprint → connect repo, or Web Service with:
+#   Build: npm install   Start: npm start
+services:
+  - type: web
+    name: sos-travel-assist
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health

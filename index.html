@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0a0b0f">
+    <title>Tourist Safety Pro | Professional SOS</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Maps JavaScript API - Replace YOUR_API_KEY with your actual API key -->
+    <!-- Optional: add Google Maps API key if you need Places autocomplete -->
+</head>
+<body>
+    <!-- Animated Background - Tourist Safety Theme -->
+    <div class="animated-bg">
+        <div class="bg-gradient"></div>
+        <div class="safety-pattern"></div>
+        
+        <!-- Floating Safety Icons -->
+        <div class="floating-icons">
+            <div class="safety-icon-item icon-shield">🛡️</div>
+            <div class="safety-icon-item icon-map">🗺️</div>
+            <div class="safety-icon-item icon-compass">🧭</div>
+            <div class="safety-icon-item icon-check">✅</div>
+            <div class="safety-icon-item icon-location">📍</div>
+            <div class="safety-icon-item icon-sos">🚨</div>
+            <div class="safety-icon-item icon-warning">⚠️</div>
+            <div class="safety-icon-item icon-phone">📞</div>
+            <div class="safety-icon-item icon-hospital">🏥</div>
+            <div class="safety-icon-item icon-police">🚔</div>
+            <div class="safety-icon-item icon-shield-2">🛡️</div>
+            <div class="safety-icon-item icon-map-2">🗺️</div>
+        </div>
+        
+        <!-- Animated Safety Lines/Grid -->
+         <div class="safety-grid"></div>
+        
+        <!-- Pulsing Safety Zones -->
+        <div class="safety-zones">
+            <div class="zone zone-1"></div>
+            <div class="zone zone-2"></div>
+            <div class="zone zone-3"></div>
+        </div>
+    </div>
+
+    <!-- Profile button - top right corner -->
+    <button type="button" class="profile-btn" id="profile-btn" onclick="toggleProfilePanel()" aria-label="Profile" title="Profile">
+        <span class="profile-btn-icon">👤</span>
+    </button>
+    <div class="profile-panel hidden" id="profile-panel">
+        <div class="profile-panel-header">
+            <h4>Profile</h4>
+            <button type="button" class="profile-close-btn" onclick="toggleProfilePanel()" aria-label="Close">×</button>
+        </div>
+        <div class="profile-content">
+            <div class="profile-photo-wrap">
+                <div class="profile-photo" id="profile-photo">JD</div>
+            </div>
+            <h3 class="profile-name" id="profile-name">John Doe</h3>
+            <div class="profile-info">
+                <div class="profile-row"><span class="profile-label">Age</span><span class="profile-value" id="profile-age">28</span></div>
+                <div class="profile-row"><span class="profile-label">Phone</span><span class="profile-value" id="profile-phone">+1 234 567 8900</span></div>
+                <div class="profile-row"><span class="profile-label">Email</span><span class="profile-value" id="profile-email">john.doe@example.com</span></div>
+                <div class="profile-row"><span class="profile-label">Emergency</span><span class="profile-value" id="profile-emergency">+1 234 567 8901</span></div>
+                <div class="profile-row"><span class="profile-label">Blood Type</span><span class="profile-value" id="profile-blood">O+</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signal level indicator - top right corner -->
+    <div class="signal-indicator" id="signal-indicator" title="Area signal strength">
+        <span class="signal-label">Signal</span>
+        <div class="signal-bars">
+            <span class="signal-bar" data-level="1"></span>
+            <span class="signal-bar" data-level="2"></span>
+            <span class="signal-bar" data-level="3"></span>
+            <span class="signal-bar" data-level="4"></span>
+            <span class="signal-bar" data-level="5"></span>
+        </div>
+        <span class="signal-area" id="signal-area">--</span>
+    </div>
+
+    <div class="app-container">
+        <!-- Smartwatch health sensor - small 3D button in left corner -->
+        <button type="button" class="health-watch-btn health-btn-3d" id="health-watch-btn" onclick="toggleHealthPanel()" title="View health stats">
+            <span class="health-watch-icon">⌚</span>
+        </button>
+        <div class="health-panel hidden" id="health-panel">
+            <div class="health-panel-header">
+                <h4>Smartwatch Sensor</h4>
+                <button type="button" class="health-close-btn" onclick="toggleHealthPanel()" aria-label="Close">×</button>
+            </div>
+            <div class="health-stats">
+                <div class="health-stat">
+                    <span class="health-stat-icon">❤️</span>
+                    <span class="health-stat-value" id="health-hr">--</span>
+                    <span class="health-stat-unit">bpm</span>
+                    <span class="health-stat-label">Heart Rate</span>
+                </div>
+                <div class="health-stat">
+                    <span class="health-stat-icon">🩸</span>
+                    <span class="health-stat-value" id="health-bp">--</span>
+                    <span class="health-stat-unit">mmHg</span>
+                    <span class="health-stat-label">Blood Pressure</span>
+                </div>
+                <div class="health-stat">
+                    <span class="health-stat-icon">🫁</span>
+                    <span class="health-stat-value" id="health-spo2">--</span>
+                    <span class="health-stat-unit">%</span>
+                    <span class="health-stat-label">SpO2</span>
+                </div>
+                <div class="health-stat">
+                    <span class="health-stat-icon">👟</span>
+                    <span class="health-stat-value" id="health-steps">--</span>
+                    <span class="health-stat-unit">steps</span>
+                    <span class="health-stat-label">Today</span>
+                </div>
+                <div class="health-stat">
+                    <span class="health-stat-icon">🧠</span>
+                    <span class="health-stat-value" id="health-stress">--</span>
+                    <span class="health-stat-unit">%</span>
+                    <span class="health-stat-label">Stress</span>
+                </div>
+            </div>
+        </div>
+
+        <header>
+            <div class="header-top">
+                <div class="logo-container logo-3d">
+                    <div class="logo-badge">
+                        <div class="logo-circle">
+                            <div class="logo-circle-top"></div>
+                            <div class="logo-circle-bottom"></div>
+                            <div class="logo-pin-wrapper">
+                                <div class="logo-pin">
+                                    <span class="logo-sos">SOS</span>
+                                </div>
+                            </div>
+                            <div class="logo-compass-wrapper">
+                                <svg class="logo-compass" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.5"/>
+                                    <text x="16" y="8" text-anchor="middle" font-size="6" font-weight="700" fill="currentColor">N</text>
+                                    <line x1="16" y1="10" x2="16" y2="22" stroke="currentColor" stroke-width="1.2"/>
+                                    <line x1="16" y1="16" x2="22" y2="14" stroke="currentColor" stroke-width="1.5"/>
+                                    <line x1="16" y1="16" x2="10" y2="18" stroke="currentColor" stroke-width="1"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="badge safe">
+                <span class="pulse-dot"></span>
+                SAFE ZONE
+            </div>
+            <h1>TOURIST SAFETY <span>PRO</span></h1>
+            <div class="header-datetime" id="header-datetime" aria-live="polite">
+                <span class="datetime-time" id="app-time">--:--</span>
+                <span class="datetime-sep" aria-hidden="true">·</span>
+                <span class="datetime-date" id="app-date"> </span>
+            </div>
+
+            <!-- Place search: safe directions + risk SMS alert -->
+            <div class="search-section">
+                <div class="search-modern">
+                    <div class="search-modern-head">
+                        <span class="search-modern-title">Destination search</span>
+                        <span class="search-modern-hint">Maps · Safe routing</span>
+                    </div>
+                    <div class="search-wrap">
+                        <span class="search-icon-wrap" aria-hidden="true">
+                            <svg class="search-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.75"/>
+                                <path d="M16.5 16.5 21 21" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+                            </svg>
+                        </span>
+                        <input type="text" id="place-search" class="place-search-input" placeholder="Search a place for a safe route…" autocomplete="off" />
+                        <button type="button" class="search-go-btn" id="search-go-btn" onclick="searchPlaceSafeRoute()" aria-label="Get safe directions">
+                            <span class="search-go-label">Go</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="search-result" id="search-result"></div>
+                <div class="risk-sms-alert hidden" id="risk-sms-alert">
+                    <p class="risk-message">⚠️ This area may have higher risk. Use <strong>SMS alert</strong> below — it works offline on your phone (opens the Messages app).</p>
+                </div>
+            </div>
+
+            <!-- Share + offline SMS (sms: link — no server or data required on most phones) -->
+            <div class="live-share-wrap">
+                <button type="button" class="live-share-btn" id="live-share-btn" onclick="shareLiveLocation()" title="Share my location with family and friends" aria-label="Share live location">
+                    <span class="live-share-btn-icon" aria-hidden="true">📍</span>
+                    <span class="live-share-btn-text">Share live location</span>
+                </button>
+                <button type="button" class="sms-alert-btn sms-alert-btn--row" id="sms-alert-btn" onclick="sendRiskSmsAlert()" aria-label="Send SMS alert" title="Opens SMS app — works without internet">
+                    <span class="sms-alert-btn-icon" aria-hidden="true">✉</span>
+                    <span class="sms-alert-btn-text">SMS alert</span>
+                </button>
+            </div>
+
+        </header>
+
+        <div class="map-box">
+            <iframe id="main-map" class="map-iframe" title="Map" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="controls">
+            <button class="sos-trigger" onclick="activateEmergency()">SOS</button>
+            <p id="status-display">System ready for assistance.</p>
+            <p class="public-hint" id="public-hint" hidden></p>
+            <p class="backend-hint" id="backend-hint" hidden></p>
+        </div>
+
+        <div class="alarm-section">
+            <button class="alarm-btn" id="alarm-btn" onclick="toggleAlarm()">
+                <span class="alarm-icon" id="alarm-icon">🔊</span>
+                <span class="alarm-text" id="alarm-text">Sound Alarm</span>
+            </button>
+        </div>
+
+        <div class="emergency-contact-section">
+            <button class="emergency-btn" onclick="callEmergency()">
+                <i>📞</i>
+                <span>Emergency Contact</span>
+                <span class="emergency-number">100</span>
+            </button>
+        </div>
+
+        <nav class="service-grid">
+            <button class="nav-btn" onclick="findService('police')">
+                <i>🚔</i><span>Police</span>
+            </button>
+            <button class="nav-btn" onclick="findService('hospital')">
+                <i>🏥</i><span>Hospital</span>
+            </button>
+            <button class="nav-btn" onclick="findService('hotel')">
+                <i>🏨</i><span>Hotels</span>
+            </button>
+        </nav>
+
+        <!-- Weather Section -->
+        <div class="weather-section">
+            <div class="weather-header">
+                <div class="weather-header-left">
+                    <span class="weather-icon" id="weather-icon">🌤️</span>
+                    <div class="weather-header-text">
+                        <h3>Weather Conditions</h3>
+                        <span class="weather-status-pill" id="weather-status-pill">--</span>
+                    </div>
+                </div>
+
+                <div class="weather-header-actions">
+                    <button type="button" class="weather-refresh-btn" id="weather-refresh-btn" onclick="refreshLocationAndWeather()" title="Update location and weather" aria-label="Refresh weather">
+                        ↻
+                    </button>
+                    <button class="weather-toggle" id="weather-toggle" type="button" onclick="toggleWeatherDetails()">
+                        Show details
+                    </button>
+                </div>
+            </div>
+            
+            <div class="weather-main" id="weather-main">
+                <div class="weather-loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading weather data...</p>
+                </div>
+            </div>
+
+            <div class="weather-safety" id="weather-safety">
+                <!-- Safety status will be inserted here -->
+            </div>
+
+            <div class="weather-details" id="weather-details">
+                <!-- Weather details will be inserted here -->
+            </div>
+
+            <div class="weather-features" id="weather-features">
+                <!-- Additional weather features will be inserted here -->
+            </div>
+
+            <!-- Trip stats: distance & time (safe route tracking) -->
+            <div class="trip-stats-section" id="trip-stats-section">
+                <h4 class="trip-stats-title">Safe route tracking</h4>
+                <div class="trip-stats-grid">
+                    <div class="trip-stat">
+                        <span class="trip-stat-icon">📏</span>
+                        <span class="trip-stat-value" id="trip-distance">0 km</span>
+                        <span class="trip-stat-label">Distance</span>
+                    </div>
+                    <div class="trip-stat">
+                        <span class="trip-stat-icon">⏱️</span>
+                        <span class="trip-stat-value" id="trip-time">0:00</span>
+                        <span class="trip-stat-label">Time</span>
+                    </div>
+                </div>
+                <p class="trip-status-text" id="trip-status-text">Start a safe route above to track your trip.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TravelGuide AI Chatbot - floating button -->
+    <button type="button" class="chatbot-btn" id="chatbot-btn" onclick="toggleChatbot()" aria-label="TravelGuide AI" title="TravelGuide AI - Travel Assistant">
+        <svg class="chatbot-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="9" cy="12" r="1" fill="currentColor"/>
+            <circle cx="12" cy="12" r="1" fill="currentColor"/>
+            <circle cx="15" cy="12" r="1" fill="currentColor"/>
+        </svg>
+        <span class="chatbot-badge">AI</span>
+    </button>
+
+    <!-- Chat panel -->
+    <div class="chat-panel hidden" id="chat-panel">
+        <div class="chat-panel-header">
+            <div class="chat-panel-title">
+                <span class="chat-panel-icon">✨</span>
+                <h4>TravelGuide AI</h4>
+            </div>
+            <button type="button" class="chat-close-btn" onclick="toggleChatbot()" aria-label="Close">×</button>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="chat-msg bot">
+                <span class="chat-avatar">AI</span>
+                <div class="chat-bubble">
+                    <p>Hi! I'm <strong>TravelGuide AI</strong>, your smart travel assistant. I can help you with:</p>
+                    <ul>
+                        <li>Tourist attractions & sightseeing</li>
+                        <li>Trip planning & itineraries</li>
+                        <li>Hotels, restaurants & hospitals nearby</li>
+                        <li>Transport, directions & navigation</li>
+                        <li>Weather, local tips & safety advice</li>
+                        <li>Emergency assistance</li>
+                    </ul>
+                    <p>How can I help you today?</p>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-wrap">
+            <input type="text" id="chat-input" class="chat-input" placeholder="Ask anything about travel..." autocomplete="off" />
+            <button type="button" class="chat-send-btn" onclick="sendChatMessage()" aria-label="Send">Send</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <!-- Note: Replace YOUR_API_KEY in the script tag above with your Google Maps API key -->
+    <!-- Get your API key from: https://console.cloud.google.com/google/maps-apis -->
+</body>
+</html>

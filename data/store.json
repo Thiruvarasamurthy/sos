@@ -1,0 +1,67 @@
+{
+  "profile": {
+    "name": "John Doe",
+    "age": 28,
+    "phone": "+1 234 567 8900",
+    "email": "john.doe@example.com",
+    "emergencyPhone": "+1 234 567 8901",
+    "bloodType": "O+"
+  },
+  "emergencyContacts": [
+    {
+      "name": "Family Contact",
+      "phone": "+1 234 567 8901",
+      "relation": "Family"
+    },
+    {
+      "name": "Friend Contact",
+      "phone": "+1 234 567 8910",
+      "relation": "Friend"
+    }
+  ],
+  "sosEvents": [
+    {
+      "id": "sos_1774374107578",
+      "source": "sos-button",
+      "lat": null,
+      "lng": null,
+      "note": "SOS pressed",
+      "createdAt": "2026-03-24T17:41:47.578Z"
+    },
+    {
+      "id": "sos_1774374102969",
+      "source": "sos-button",
+      "lat": null,
+      "lng": null,
+      "note": "SOS pressed",
+      "createdAt": "2026-03-24T17:41:42.969Z"
+    }
+  ],
+  "locationEvents": [],
+  "healthSnapshots": [
+    {
+      "id": "hs_1775373842110",
+      "heartRate": 77,
+      "bloodPressure": "131/76",
+      "spo2": 99,
+      "stress": 37,
+      "createdAt": "2026-04-05T07:24:02.110Z"
+    },
+    {
+      "id": "hs_1775373834110",
+      "heartRate": 72,
+      "bloodPressure": "125/69",
+      "spo2": 97,
+      "stress": 23,
+      "createdAt": "2026-04-05T07:23:54.112Z"
+    },
+    {
+      "id": "hs_1774374138185",
+      "heartRate": 78,
+      "bloodPressure": "129/73",
+      "spo2": 96,
+      "stress": 54,
+      "createdAt": "2026-03-24T17:42:18.185Z"
+    }
+  ]
+}
